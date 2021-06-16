@@ -32,12 +32,12 @@ namespace WindowsGelirGiderTakip
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gelir_Gider));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_ID = new WindowsGelirGiderTakip.TextBoxNumbersOnly();
             this.radBorç = new System.Windows.Forms.RadioButton();
             this.radGider = new System.Windows.Forms.RadioButton();
             this.radGelir = new System.Windows.Forms.RadioButton();
             this.btn_Tümünü_Göster = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.txt_ID = new System.Windows.Forms.TextBox();
             this.cmbTipi = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Borç_Ekle = new System.Windows.Forms.Button();
@@ -59,12 +59,12 @@ namespace WindowsGelirGiderTakip
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txt_ID);
             this.panel1.Controls.Add(this.radBorç);
             this.panel1.Controls.Add(this.radGider);
             this.panel1.Controls.Add(this.radGelir);
             this.panel1.Controls.Add(this.btn_Tümünü_Göster);
             this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.txt_ID);
             this.panel1.Controls.Add(this.cmbTipi);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btn_Borç_Ekle);
@@ -75,6 +75,15 @@ namespace WindowsGelirGiderTakip
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(350, 497);
             this.panel1.TabIndex = 2;
+            // 
+            // txt_ID
+            // 
+            this.txt_ID.Location = new System.Drawing.Point(40, 79);
+            this.txt_ID.Name = "txt_ID";
+            this.txt_ID.NumbersOnly = true;
+            this.txt_ID.Size = new System.Drawing.Size(119, 23);
+            this.txt_ID.TabIndex = 11;
+            this.txt_ID.Text = "0";
             // 
             // radBorç
             // 
@@ -126,13 +135,6 @@ namespace WindowsGelirGiderTakip
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(247, 23);
             this.comboBox1.TabIndex = 6;
-            // 
-            // txt_ID
-            // 
-            this.txt_ID.Location = new System.Drawing.Point(40, 79);
-            this.txt_ID.Name = "txt_ID";
-            this.txt_ID.Size = new System.Drawing.Size(119, 23);
-            this.txt_ID.TabIndex = 5;
             // 
             // cmbTipi
             // 
@@ -194,6 +196,7 @@ namespace WindowsGelirGiderTakip
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(559, 497);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Gelir_Gider
             // 
@@ -220,7 +223,6 @@ namespace WindowsGelirGiderTakip
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox txt_ID;
         private System.Windows.Forms.Label cmbTipi;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_Borç_Ekle;
@@ -231,6 +233,7 @@ namespace WindowsGelirGiderTakip
         private System.Windows.Forms.RadioButton radGelir;
         private System.Windows.Forms.RadioButton radBorç;
         private System.Windows.Forms.RadioButton radGider;
+        private TextBoxNumbersOnly txt_ID;
     }
 }
 

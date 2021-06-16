@@ -33,50 +33,60 @@ namespace WindowsGelirGiderTakip
         }
         private void btnGelirKaydet_Click(object sender, EventArgs e)
         {
-            string Tip = string.Empty;
-            if (radGelir.Checked == true)
+            if (radGelir.Checked != false)
             {
-                Tip = "Gelir";
-            }
-            if (Convert.ToInt32(txtGelirID.Text) == 0)
-            {
-                Bağlantı.ConnectionClass.Command("" +
-                    "    INSERT INTO [dbo].[Gelir_Ekle] " +
-                    "                ([Gelir_Ekle_SahipAd] " +
-                    "                ,[Gelir_Ekle_SahipSoyad] " +
-                    "                ,[Gelir_Ekle_Tipi] " +
-                    "                ,[Gelir_Ekle_Cari] " +
-                    "                ,[Gelir_Ekle_Tutar] " +
-                    "                ,[Gelir_Ekle_Açıklama]) " +
-                    "    VALUES " +
-                    "                ('" + txtGelirSahibiAdı.Text + "' " +
-                    "                ,'" + txtGelirSahipSoyadı.Text + "' " +
-                    "                ,'" + cmbGelirTipi.SelectedValue.ToString() + "' " +
-                    "                ,'" + txtGelirCari.Text + "' " +
-                    "                ,'" + Convert.ToInt32(txtGelirTutar.Text) + "' " +
-                    "                ,'" + txtGelirAçıklama.Text + "') ");
-                if (Bağlantı.ConnectionClass.sqlException == null)
+                string Tip = string.Empty;
+                if (radGelir.Checked == true)
                 {
-                    MessageBox.Show("Gelir kaydı başarıyla gerçekleşti.", "Bilgi");
-                    Close();
+                    Tip = "Gelir";
                 }
+                if (Convert.ToInt32(txtGelirID.Text) == 0)
+                {
+                    Bağlantı.ConnectionClass.Command("" +
+                        "    INSERT INTO [dbo].[Gelir-Gider-Borç_Ekle] " +
+                        "                ([ggb_Ekle_SahipAd] " +
+                        "                ,[ggb_Ekle_SahipSoyad] " +
+                        "                ,[ggb_Ekle_İşlemTipi] " +
+                        "                ,[ggb_Ekle_Tipi] " +
+                        "                ,[ggb_Ekle_Cari] " +
+                        "                ,[ggb_Ekle_Tutar] " +
+                        "                ,[ggb_Ekle_Açıklama]) " +
+                        "    VALUES " +
+                        "                ('" + txtGelirSahibiAdı.Text + "' " +
+                        "                ,'" + txtGelirSahipSoyadı.Text + "' " +
+                        "                ,'" + Tip + "' " +
+                        "                ,'" + cmbGelirTipi.SelectedValue.ToString() + "' " +
+                        "                ,'" + txtGelirCari.Text + "' " +
+                        "                ,'" + Convert.ToDouble(txtGelirTutar.Text).ToString().Replace(",", ".") + "' " +
+                        "                ,'" + txtGelirAçıklama.Text + "') ");
+                    if (Bağlantı.ConnectionClass.sqlException == null)
+                    {
+                        MessageBox.Show("Gelir kaydı başarıyla gerçekleşti.", "Bilgi");
+                        Close();
+                    }
+                }
+                else
+                {
+                    Bağlantı.ConnectionClass.Command("" +
+                        "    UPDATE [dbo].[Gelir-Gider-Borç_Ekle] SET " +
+                        "           [ggb_Ekle_SahipAd] = '" + txtGelirSahibiAdı.Text + "' " +
+                        "          ,[ggb_Ekle_SahipSoyad] = '" + txtGelirSahipSoyadı.Text + "' " +
+                        "          ,[ggb_Ekle_İşlemTipi] = '" + Tip + "' " +
+                        "          ,[ggb_Ekle_Tipi] = '" + cmbGelirTipi.SelectedValue.ToString() + "' " +
+                        "          ,[ggb_Ekle_Cari] = '" + txtGelirCari.Text + "' " +
+                        "          ,[ggb_Ekle_Tutar] = '" + Convert.ToDouble(txtGelirTutar.Text).ToString().Replace(",", ".") + "' " +
+                        "          ,[ggb_Ekle_Açıklama] = '" + txtGelirAçıklama.Text + "' " +
+                        "    WHERE ggb_Ekle_ID = '" + Convert.ToInt32(txtGelirID.Text) + "' ");
+                    if (Bağlantı.ConnectionClass.sqlException == null)
+                    {
+                        MessageBox.Show("Gelir kaydı başarıyla güncelleşti.", "Bilgi");
+                        Close();
+                    }
+                } 
             }
             else
             {
-                Bağlantı.ConnectionClass.Command("" +
-                    "    UPDATE [dbo].[Gelir_Ekle] SET " +
-                    "           [Gelir_Ekle_SahipAd] = '" + txtGelirSahibiAdı.Text + "' " +
-                    "          ,[Gelir_Ekle_SahipSoyad] = '" + txtGelirSahipSoyadı.Text + "' " +
-                    "          ,[Gelir_Ekle_Tipi] = '" + cmbGelirTipi.SelectedValue.ToString() + "' " +
-                    "          ,[Gelir_Ekle_Cari] = '" + txtGelirCari.Text + "' " +
-                    "          ,[Gelir_Ekle_Tutar] = '" + Convert.ToInt32(txtGelirTutar.Text) + "' " +
-                    "          ,[Gelir_Ekle_Açıklama] = '" + txtGelirAçıklama.Text + "' " +
-                    "    WHERE Gelir_Ekle_ID = '" + Convert.ToInt32(txtGelirID.Text) + "' ");
-                if (Bağlantı.ConnectionClass.sqlException == null)
-                {
-                    MessageBox.Show("Gelir kaydı başarıyla güncelleşti.", "Bilgi");
-                    Close();
-                }
+                MessageBox.Show("İşlem tipini seçmeden işlem yapamazsınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void btnSil_Click(object sender, EventArgs e)
@@ -84,7 +94,7 @@ namespace WindowsGelirGiderTakip
             if (MessageBox.Show("Bu gelir kaydını silmek istediğinizden emin misiniz?", "Silmek istediğinizden emin misiniz?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Bağlantı.ConnectionClass.Command("" +
-                    "    DELETE [dbo].[Gelir_Ekle] WHERE Gelir_Ekle_ID = '" + Convert.ToInt32(txtGelirID.Text) + "' ");
+                    "    DELETE [dbo].[Gelir-Gider-Borç_Ekle] WHERE ggb_Ekle_ID = '" + Convert.ToInt32(txtGelirID.Text) + "' ");
                 if (Bağlantı.ConnectionClass.sqlException == null)
                 {
                     MessageBox.Show("Gelir kaydı başarıyla silindi.", "Bilgi");

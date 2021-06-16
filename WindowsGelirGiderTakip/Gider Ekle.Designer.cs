@@ -34,12 +34,10 @@ namespace WindowsGelirGiderTakip
             this.btnGiderKaydet = new System.Windows.Forms.Button();
             this.btnGiderTipiEkle = new System.Windows.Forms.Button();
             this.txtGiderAçıklama = new System.Windows.Forms.TextBox();
-            this.txtGiderTutar = new System.Windows.Forms.TextBox();
             this.txtGiderCari = new System.Windows.Forms.TextBox();
             this.cmbGiderTipi = new System.Windows.Forms.ComboBox();
             this.txtGiderSahipSoyadı = new System.Windows.Forms.TextBox();
             this.txtGiderSahibiAdı = new System.Windows.Forms.TextBox();
-            this.txtGiderID = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -52,6 +50,8 @@ namespace WindowsGelirGiderTakip
             this.radBorç = new System.Windows.Forms.RadioButton();
             this.radGider = new System.Windows.Forms.RadioButton();
             this.radGelir = new System.Windows.Forms.RadioButton();
+            this.txtGiderID = new WindowsGelirGiderTakip.TextBoxNumbersOnly();
+            this.txtGiderTutar = new WindowsGelirGiderTakip.TextBoxNumbersOnly();
             this.SuspendLayout();
             // 
             // btnKapat
@@ -92,13 +92,6 @@ namespace WindowsGelirGiderTakip
             this.txtGiderAçıklama.Size = new System.Drawing.Size(154, 90);
             this.txtGiderAçıklama.TabIndex = 30;
             // 
-            // txtGiderTutar
-            // 
-            this.txtGiderTutar.Location = new System.Drawing.Point(121, 169);
-            this.txtGiderTutar.Name = "txtGiderTutar";
-            this.txtGiderTutar.Size = new System.Drawing.Size(100, 23);
-            this.txtGiderTutar.TabIndex = 29;
-            // 
             // txtGiderCari
             // 
             this.txtGiderCari.Location = new System.Drawing.Point(121, 140);
@@ -127,14 +120,6 @@ namespace WindowsGelirGiderTakip
             this.txtGiderSahibiAdı.Name = "txtGiderSahibiAdı";
             this.txtGiderSahibiAdı.Size = new System.Drawing.Size(154, 23);
             this.txtGiderSahibiAdı.TabIndex = 25;
-            // 
-            // txtGiderID
-            // 
-            this.txtGiderID.Location = new System.Drawing.Point(121, 2);
-            this.txtGiderID.Name = "txtGiderID";
-            this.txtGiderID.Size = new System.Drawing.Size(100, 23);
-            this.txtGiderID.TabIndex = 24;
-            this.txtGiderID.Text = "0";
             // 
             // label7
             // 
@@ -251,6 +236,22 @@ namespace WindowsGelirGiderTakip
             this.radGelir.Text = "Gelir";
             this.radGelir.UseVisualStyleBackColor = true;
             // 
+            // txtGiderID
+            // 
+            this.txtGiderID.Location = new System.Drawing.Point(121, 2);
+            this.txtGiderID.Name = "txtGiderID";
+            this.txtGiderID.NumbersOnly = true;
+            this.txtGiderID.Size = new System.Drawing.Size(100, 23);
+            this.txtGiderID.TabIndex = 57;
+            // 
+            // txtGiderTutar
+            // 
+            this.txtGiderTutar.Location = new System.Drawing.Point(121, 169);
+            this.txtGiderTutar.Name = "txtGiderTutar";
+            this.txtGiderTutar.NumbersOnly = true;
+            this.txtGiderTutar.Size = new System.Drawing.Size(100, 23);
+            this.txtGiderTutar.TabIndex = 58;
+            // 
             // Gider_Ekle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -258,6 +259,8 @@ namespace WindowsGelirGiderTakip
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnKapat;
             this.ClientSize = new System.Drawing.Size(341, 323);
+            this.Controls.Add(this.txtGiderTutar);
+            this.Controls.Add(this.txtGiderID);
             this.Controls.Add(this.btnSil);
             this.Controls.Add(this.radBorç);
             this.Controls.Add(this.radGider);
@@ -267,12 +270,10 @@ namespace WindowsGelirGiderTakip
             this.Controls.Add(this.btnGiderKaydet);
             this.Controls.Add(this.btnGiderTipiEkle);
             this.Controls.Add(this.txtGiderAçıklama);
-            this.Controls.Add(this.txtGiderTutar);
             this.Controls.Add(this.txtGiderCari);
             this.Controls.Add(this.cmbGiderTipi);
             this.Controls.Add(this.txtGiderSahipSoyadı);
             this.Controls.Add(this.txtGiderSahibiAdı);
-            this.Controls.Add(this.txtGiderID);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -299,12 +300,10 @@ namespace WindowsGelirGiderTakip
         private System.Windows.Forms.Button btnGiderKaydet;
         private System.Windows.Forms.Button btnGiderTipiEkle;
         private System.Windows.Forms.TextBox txtGiderAçıklama;
-        private System.Windows.Forms.TextBox txtGiderTutar;
         private System.Windows.Forms.TextBox txtGiderCari;
         private System.Windows.Forms.ComboBox cmbGiderTipi;
         private System.Windows.Forms.TextBox txtGiderSahipSoyadı;
         private System.Windows.Forms.TextBox txtGiderSahibiAdı;
-        private System.Windows.Forms.TextBox txtGiderID;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -317,5 +316,7 @@ namespace WindowsGelirGiderTakip
         private System.Windows.Forms.RadioButton radBorç;
         private System.Windows.Forms.RadioButton radGider;
         private System.Windows.Forms.RadioButton radGelir;
+        private TextBoxNumbersOnly txtGiderID;
+        private TextBoxNumbersOnly txtGiderTutar;
     }
 }

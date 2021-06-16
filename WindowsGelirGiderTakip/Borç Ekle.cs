@@ -33,45 +33,60 @@ namespace WindowsGelirGiderTakip
         }
         private void btnBorçKaydet_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(txtBorçID.Text) == 0)
+            if (radBorç.Checked != false)
             {
-                Bağlantı.ConnectionClass.Command("" +
-                    "    INSERT INTO [dbo].[Borç_Ekle]          " +
-                    "                ([Borç_Ekle_SahipAd]       " +
-                    "                ,[Borç_Ekle_SahipSoyad]    " +
-                    "                ,[Borç_Ekle_Tipi]          " +
-                    "                ,[Borç_Ekle_Cari]          " +
-                    "                ,[Borç_Ekle_Tutar]         " +
-                    "                ,[Borç_Ekle_Açıklama])     " +
-                    "    VALUES                                 " +
-                    "                ('" + txtBorçSahibiAdı.Text + "' " +
-                    "                ,'" + txtBorçSahipSoyadı.Text + "' " +
-                    "                ,'" + cmbBorçTipi.SelectedValue.ToString() + "' " +
-                    "                ,'" + txtBorçCari.Text + "' " +
-                    "                ,'" + Convert.ToInt32(txtBorçTutar.Text) + "' " +
-                    "                ,'" + txtBorçAçıklama.Text + "') ");
-                if (Bağlantı.ConnectionClass.sqlException == null)
+                string Tip = string.Empty;
+                if (radBorç.Checked == true)
                 {
-                    MessageBox.Show("Borç kaydı başarıyla gerçekleşti.", "Bilgi");
-                    Close();
+                    Tip = "Borç";
                 }
+                if (Convert.ToInt32(txtBorçID.Text) == 0)
+                {
+                    Bağlantı.ConnectionClass.Command("" +
+                        "    INSERT INTO [dbo].[Gelir-Gider-Borç_Ekle]          " +
+                        "                ([ggb_Ekle_SahipAd]       " +
+                        "                ,[ggb_Ekle_SahipSoyad]    " +
+                        "                ,[ggb_Ekle_İşlemTipi]     " +
+                        "                ,[ggb_Ekle_Tipi]          " +
+                        "                ,[ggb_Ekle_Cari]          " +
+                        "                ,[ggb_Ekle_Tutar]         " +
+                        "                ,[ggb_Ekle_Açıklama])     " +
+                        "    VALUES                                 " +
+                        "                ('" + txtBorçSahibiAdı.Text + "' " +
+                        "                ,'" + txtBorçSahipSoyadı.Text + "' " +
+                        "                ,'" + Tip + "' " + 
+                        "                ,'" + cmbBorçTipi.SelectedValue.ToString() + "' " +
+                        "                ,'" + txtBorçCari.Text + "' " +
+                        "                ,'" + Convert.ToDouble(txtBorçTutar.Text).ToString().Replace(",", ".") + "' " +
+                        "                ,'" + txtBorçAçıklama.Text + "') ");
+                    if (Bağlantı.ConnectionClass.sqlException == null)
+                    {
+                        MessageBox.Show("Borç kaydı başarıyla gerçekleşti.", "Bilgi");
+                        Close();
+                    }
+                }
+                else
+                {
+                    Bağlantı.ConnectionClass.Command("" +
+                        "    UPDATE [dbo].[Gelir-Gider-Borç_Ekle] SET                                               " +
+                        "           [ggb_Ekle_SahipAd] = '" + txtBorçSahibiAdı.Text + "'               " +
+                        "          ,[ggb_Ekle_SahipSoyad] = '" + txtBorçSahipSoyadı.Text + "'          " +
+                        "          ,[ggb_Ekle_İşlemTipi] = '" + Tip + "'                                  " + 
+                        "          ,[ggb_Ekle_Tipi] = '" + cmbBorçTipi.SelectedValue.ToString() + "'   " +
+                        "          ,[ggb_Ekle_Cari] = '" + txtBorçCari.Text + "'                       " +
+                        "          ,[ggb_Ekle_Tutar] = '" + Convert.ToDouble(txtBorçTutar.Text).ToString().Replace(",", ".") + "'    " +
+                        "          ,[ggb_Ekle_Açıklama] = '" + txtBorçAçıklama.Text + "'               " +
+                        "    WHERE ggb_Ekle_ID = '" + Convert.ToInt32(txtBorçID.Text) + "'             ");
+                    if (Bağlantı.ConnectionClass.sqlException == null)
+                    {
+                        MessageBox.Show("Borç kaydı başarıyla güncelleşti.", "Bilgi");
+                        Close();
+                    }
+                } 
             }
             else
             {
-                Bağlantı.ConnectionClass.Command("" +
-                    "    UPDATE [dbo].[Borç_Ekle] SET                                               " +
-                    "           [Borç_Ekle_SahipAd] = '" + txtBorçSahibiAdı.Text + "'               " +
-                    "          ,[Borç_Ekle_SahipSoyad] = '" + txtBorçSahipSoyadı.Text + "'          " +
-                    "          ,[Borç_Ekle_Tipi] = '" + cmbBorçTipi.SelectedValue.ToString() + "'   " +
-                    "          ,[Borç_Ekle_Cari] = '" + txtBorçCari.Text + "'                       " +
-                    "          ,[Borç_Ekle_Tutar] = '" + Convert.ToInt32(txtBorçTutar.Text) + "'    " +
-                    "          ,[Borç_Ekle_Açıklama] = '" + txtBorçAçıklama.Text + "'               " +
-                    "    WHERE Borç_Ekle_ID = '" + Convert.ToInt32(txtBorçID.Text) + "'             ");
-                if (Bağlantı.ConnectionClass.sqlException == null)
-                {
-                    MessageBox.Show("Borç kaydı başarıyla güncelleşti.", "Bilgi");
-                    Close();
-                }
+                MessageBox.Show("İşlem tipini seçmeden işlem yapamazsınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void btnSil_Click(object sender, EventArgs e)
@@ -79,7 +94,7 @@ namespace WindowsGelirGiderTakip
             if (MessageBox.Show("Bu borç kaydını silmek istediğinizden emin misiniz?", "Silmek istediğinizden emin misiniz?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Bağlantı.ConnectionClass.Command("" +
-                    "    DELETE [dbo].[Borç_Ekle] WHERE Borç_Ekle_ID = '" + Convert.ToInt32(txtBorçID.Text) + "' ");
+                    "    DELETE [dbo].[Gelir-Gider-Borç_Ekle] WHERE ggb_Ekle_ID = '" + Convert.ToInt32(txtBorçID.Text) + "' ");
                 if (Bağlantı.ConnectionClass.sqlException == null)
                 {
                     MessageBox.Show("Borç kaydı başarıyla silindi.", "Bilgi");

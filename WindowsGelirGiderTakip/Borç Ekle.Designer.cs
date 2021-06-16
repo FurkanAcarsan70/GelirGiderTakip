@@ -37,12 +37,10 @@ namespace WindowsGelirGiderTakip
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtBorçID = new System.Windows.Forms.TextBox();
             this.txtBorçSahibiAdı = new System.Windows.Forms.TextBox();
             this.txtBorçSahipSoyadı = new System.Windows.Forms.TextBox();
             this.cmbBorçTipi = new System.Windows.Forms.ComboBox();
             this.txtBorçCari = new System.Windows.Forms.TextBox();
-            this.txtBorçTutar = new System.Windows.Forms.TextBox();
             this.txtBorçAçıklama = new System.Windows.Forms.TextBox();
             this.btnBorçTipiEkle = new System.Windows.Forms.Button();
             this.btnBorçKaydet = new System.Windows.Forms.Button();
@@ -52,6 +50,8 @@ namespace WindowsGelirGiderTakip
             this.radGider = new System.Windows.Forms.RadioButton();
             this.radGelir = new System.Windows.Forms.RadioButton();
             this.btnSil = new System.Windows.Forms.Button();
+            this.txtBorçID = new WindowsGelirGiderTakip.TextBoxNumbersOnly();
+            this.txtBorçTutar = new WindowsGelirGiderTakip.TextBoxNumbersOnly();
             this.SuspendLayout();
             // 
             // label1
@@ -117,14 +117,6 @@ namespace WindowsGelirGiderTakip
             this.label7.TabIndex = 6;
             this.label7.Text = "Borç Sahibinin Soyadı:";
             // 
-            // txtBorçID
-            // 
-            this.txtBorçID.Location = new System.Drawing.Point(120, 8);
-            this.txtBorçID.Name = "txtBorçID";
-            this.txtBorçID.Size = new System.Drawing.Size(100, 23);
-            this.txtBorçID.TabIndex = 7;
-            this.txtBorçID.Text = "0";
-            // 
             // txtBorçSahibiAdı
             // 
             this.txtBorçSahibiAdı.Location = new System.Drawing.Point(120, 37);
@@ -153,13 +145,6 @@ namespace WindowsGelirGiderTakip
             this.txtBorçCari.Name = "txtBorçCari";
             this.txtBorçCari.Size = new System.Drawing.Size(154, 23);
             this.txtBorçCari.TabIndex = 11;
-            // 
-            // txtBorçTutar
-            // 
-            this.txtBorçTutar.Location = new System.Drawing.Point(120, 176);
-            this.txtBorçTutar.Name = "txtBorçTutar";
-            this.txtBorçTutar.Size = new System.Drawing.Size(100, 23);
-            this.txtBorçTutar.TabIndex = 12;
             // 
             // txtBorçAçıklama
             // 
@@ -251,6 +236,22 @@ namespace WindowsGelirGiderTakip
             this.btnSil.UseVisualStyleBackColor = true;
             this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
+            // txtBorçID
+            // 
+            this.txtBorçID.Location = new System.Drawing.Point(120, 8);
+            this.txtBorçID.Name = "txtBorçID";
+            this.txtBorçID.NumbersOnly = true;
+            this.txtBorçID.Size = new System.Drawing.Size(100, 23);
+            this.txtBorçID.TabIndex = 22;
+            // 
+            // txtBorçTutar
+            // 
+            this.txtBorçTutar.Location = new System.Drawing.Point(120, 176);
+            this.txtBorçTutar.Name = "txtBorçTutar";
+            this.txtBorçTutar.NumbersOnly = true;
+            this.txtBorçTutar.Size = new System.Drawing.Size(100, 23);
+            this.txtBorçTutar.TabIndex = 23;
+            // 
             // Borç_Ekle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -258,6 +259,8 @@ namespace WindowsGelirGiderTakip
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnKapat;
             this.ClientSize = new System.Drawing.Size(336, 331);
+            this.Controls.Add(this.txtBorçTutar);
+            this.Controls.Add(this.txtBorçID);
             this.Controls.Add(this.btnSil);
             this.Controls.Add(this.radBorç);
             this.Controls.Add(this.radGider);
@@ -267,12 +270,10 @@ namespace WindowsGelirGiderTakip
             this.Controls.Add(this.btnBorçKaydet);
             this.Controls.Add(this.btnBorçTipiEkle);
             this.Controls.Add(this.txtBorçAçıklama);
-            this.Controls.Add(this.txtBorçTutar);
             this.Controls.Add(this.txtBorçCari);
             this.Controls.Add(this.cmbBorçTipi);
             this.Controls.Add(this.txtBorçSahipSoyadı);
             this.Controls.Add(this.txtBorçSahibiAdı);
-            this.Controls.Add(this.txtBorçID);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -302,12 +303,10 @@ namespace WindowsGelirGiderTakip
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtBorçID;
         private System.Windows.Forms.TextBox txtBorçSahibiAdı;
         private System.Windows.Forms.TextBox txtBorçSahipSoyadı;
         private System.Windows.Forms.ComboBox cmbBorçTipi;
         private System.Windows.Forms.TextBox txtBorçCari;
-        private System.Windows.Forms.TextBox txtBorçTutar;
         private System.Windows.Forms.TextBox txtBorçAçıklama;
         private System.Windows.Forms.Button btnBorçTipiEkle;
         private System.Windows.Forms.Button btnBorçKaydet;
@@ -317,5 +316,7 @@ namespace WindowsGelirGiderTakip
         private System.Windows.Forms.RadioButton radGider;
         private System.Windows.Forms.RadioButton radGelir;
         private System.Windows.Forms.Button btnSil;
+        private TextBoxNumbersOnly txtBorçID;
+        private TextBoxNumbersOnly txtBorçTutar;
     }
 }
